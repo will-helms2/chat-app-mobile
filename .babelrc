@@ -1,0 +1,26 @@
+{
+  "presets": [
+    "module:metro-react-native-babel-preset",
+    "@babel/preset-flow"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+      "@babel/plugin-proposal-export-default-from",
+      "@babel/plugin-proposal-export-namespace-from",
+    ["module-resolver",
+      {
+        "cwd": "babelrc",
+        "root": [
+          "./app"
+        ],
+        "extensions": [".js"],
+        "alias": {
+          "assets": "./assets",
+          "screen": "./app/screens/screen",
+          "proptypes": "./app/constants/prop-types",
+          "errors": "./app/constants/errors"
+        }
+      }
+    ]
+  ]
+}
