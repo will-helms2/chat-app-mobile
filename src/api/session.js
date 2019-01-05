@@ -8,7 +8,7 @@ import Storage, { StorageKeys } from 'api/storage';
 import Config from 'config';
 
 export async function signIn(email, password) {
-  const path = '/sign-in';
+  const path = '/user/signin'; // vimbel.com/api/user/signin
   let response;
   try {
     response = await new ServerRequest({
@@ -19,7 +19,7 @@ export async function signIn(email, password) {
       },
     }).post();
 
-    if (response.user) {
+    if (response.token) {
       response = await _userAuthentication(response);
     }
   } catch (error) {
@@ -78,7 +78,7 @@ async function _userAuthentication(response) {
 }
 
 export async function signUp(params){
-  const path = '/sign_up';
+  const path = '/user';
   let response = null;
 
   const bodyParams = params;

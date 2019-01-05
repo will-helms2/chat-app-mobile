@@ -26,7 +26,7 @@ export function signIn(email, password) {
           return;
         }
 
-        if (response.user) {
+        if (response.token) {
           dispatcher.dispatch(ActionTypes.SIGN_IN__SUCCESS, response);
         } else {
           dispatcher.dispatch(ActionTypes.SIGN_IN__INVALID);

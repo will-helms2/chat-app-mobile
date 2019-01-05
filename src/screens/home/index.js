@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export class Home extends React.Component {
+export default class Home extends React.Component {
   constructor(props){
     super(props);
 
@@ -9,8 +9,8 @@ export class Home extends React.Component {
 
   render(){
     return(
-      <View>
-        <Text>Signed in</Text>
+      <View style={{marginTop: 100}}>
+        <Text>Signed in/ this is where team selection/addition will be</Text>
       </View>
     );
   }

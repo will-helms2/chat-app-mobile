@@ -3,13 +3,8 @@
  */
 
 import React from 'react';
-import { StatusBar } from 'react-native';
 import { merge } from 'lodash';
-import { Color } from 'styles';
 import { Platform } from 'constants';
-import NavigationBackButton from 'components/navigation-button/back';
-import NavigationCloseButton from 'components/navigation-button/close';
-import NavRoutes from 'navigation/routes';
 
 /* Exports */
 

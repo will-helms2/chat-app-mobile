@@ -15,7 +15,6 @@ const Config = {
     //IMPORTANT: Declare debug attributes in Secrets file only
     clearAll: false,
     clearSession: false,
-    clearOnboarding: false,
   },
   navigation: {
    app: {

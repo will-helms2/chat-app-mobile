@@ -11,14 +11,16 @@
       {
         "cwd": "babelrc",
         "root": [
-          "./app"
+          "./src"
         ],
         "extensions": [".js"],
         "alias": {
           "assets": "./assets",
-          "screen": "./app/screens/screen",
-          "proptypes": "./app/constants/prop-types",
-          "errors": "./app/constants/errors"
+          "proptypes": "./src/constants/prop-types",
+          "errors": "./src/constants/errors",
+          "navigation": "./src/navigation",
+          "screens": "./src/screens",
+          "components": "./src/components"
         }
       }
     ]

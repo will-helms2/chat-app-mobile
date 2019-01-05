@@ -83,6 +83,9 @@ export default class ServerRequest {
 
     this._parsedResponse = await this._parseResponse(this._response);
 
+    //debug purposes
+    //console.log(this._fetchURL, this._body, this._parsedResponse);
+
     return this._parsedResponse;
   }
 
