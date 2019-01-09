@@ -9,6 +9,7 @@ export const initialLoadState = {
   loading: false,
   loaded: false,
   error: null,
+  errors: null,
 };
 
 const initialState = {

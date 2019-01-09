@@ -64,6 +64,7 @@ export default class ServerRequest {
         'Content-Type': this._formData
           ? this._contentTypeFromData
           : this._contentTypeJson,
+          'X-Requested-With': "XMLHttpRequest",
         ...this._headers,
       },
       ...this._fetchParams,
@@ -83,6 +84,8 @@ export default class ServerRequest {
 
     this._parsedResponse = await this._parseResponse(this._response);
 
+    console.log(this._response);
+
     //debug purposes
     //console.log(this._fetchURL, this._body, this._parsedResponse);
 
@@ -100,6 +103,14 @@ export default class ServerRequest {
 
       switch (response.status) {
         case 200: {
+          this._success = true;
+          break;
+        }
+        case 422: {
+          parsedResponse = {
+            ...Responses.RESPONSE_BAD_REQUEST,
+            ...parsedResponse,
+          };
           this._success = true;
           break;
         }

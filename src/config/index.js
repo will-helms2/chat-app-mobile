@@ -37,7 +37,7 @@ const Config = {
    },
    signedOut: {
      navigationOptions: {
-       initialRouteName: NavigationRoutes.SIGNED_OUT__SIGN_IN,
+       initialRouteName: NavigationRoutes.SIGNED_OUT__OPENING,
      },
    },
  },
