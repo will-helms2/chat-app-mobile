@@ -25,9 +25,10 @@ export default function screen(WrappedComponent, options) {
 
       if(errors && !loading){
         const keys = Object.keys(errors);
+        console.log(keys);
         for (const key of keys) {
-          if(keys.length === 0 || key === keys[keys.length - 1]){
-            errorMessage = errors[key];
+          if(keys.length === 1 || key === keys[keys.length - 1]){
+            errorMessage = errorMessage + errors[key];
           }else{
             errorMessage = errors[key] + "\n";
           }

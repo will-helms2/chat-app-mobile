@@ -7,21 +7,43 @@ import React from 'react';
 import Config from 'config';
 import { createStackNavigator } from 'react-navigation';
 import { stackNavigationOptions, stackNavigatorProps } from 'navigation';
-import Home from '../screens/home';
-
+import Team from 'screens/team';
+import Channel from 'navigation/channel';
+import CreateChannel from 'screens/create-channel';
+import { MainDrawerButton, ChannelDrawerButton } from 'components';
 
 /* eslint-disable react/prop-types */
 export default createStackNavigator(
   {
-    'home': {
-      screen: Home,
-      navigationOptions: stackNavigationOptions({
-        title: 'Home',
-        }),
+    'home__team': {
+      screen: Team,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft : <MainDrawerButton navigation={navigation} />,
+        title: 'Vimbel',
+      }),
+    },
+    'home__channel': {
+      screen: Channel,
+      navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.name}`,
+        headerRight : <ChannelDrawerButton navigation={navigation} />,
+      }),
+      },
+    'home__create_channel': {
+      screen: CreateChannel,
+      navigationOptions: {
+        title: 'Create a Station',
       },
     },
-      {
-        ...stackNavigatorProps,
-        ...Config.navigation.home.navigationOptions,
+  },
+    {
+      ...Config.navigation.home.navigationOptions,
+      defaultNavigationOptions:{
+        headerStyle: {
+          backgroundColor: '#8A2BE2',
+        },
+        headerTintColor: "white",
+        headerBackTitle: "Stations",
       }
+    }
 );

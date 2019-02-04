@@ -84,3 +84,31 @@ export function signUp(params) {
     }
   };
 }
+
+/*
+ * Validate
+ * @action: api call to validate the token
+ */
+
+export function validate() {
+  return async dispatch => {
+    const dispatcher = new ActionDispatcher(dispatch);
+    try {
+      dispatcher.dispatch(ActionTypes.VALIDATE__INIT);
+
+      const response = await Api.session.validate();
+
+      if (response.error) {
+        dispatcher.dispatch(ActionTypes.VALIDATE__ERROR, response);
+        return;
+      }
+
+      dispatcher.dispatch(ActionTypes.VALIDATE__SUCCESS, response);
+    } catch (error) {
+      dispatcher.dispatch(
+        ActionTypes.VALIDATE__ERROR,
+        Errors.resolveError(error),
+      );
+    }
+  };
+}

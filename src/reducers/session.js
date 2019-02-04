@@ -16,6 +16,9 @@ const initialState = {
   ...initialLoadState,
   empty: false,
   invalid: false,
+  validateToken: {
+    initialLoadState
+  }
 };
 
 export default function session(state = initialState, action = {}) {
@@ -86,8 +89,8 @@ export default function session(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
-        signUpError: payload.error,
-        signUpErrors: payload.errors,
+        error: payload.error,
+        errors: payload.errors,
       };
     }
 
@@ -98,11 +101,45 @@ export default function session(state = initialState, action = {}) {
     case ActionTypes.SIGN_OUT: {
       return {
         ...initialState,
-        accessToken: {
+      };
+    }
+
+    case ActionTypes.VALIDATE__INIT: {
+      return {
+        ...state,
+        validateToken: {
           ...initialLoadState,
+          loading: true,
+        },
+      };
+
+    }
+
+    case ActionTypes.VALIDATE__SUCCESS: {
+      console.log(payload);
+      return {
+        ...state,
+        ...payload,
+        validateToken: {
+          ...state.validateToken,
+          loading: false,
           loaded: true,
         },
       };
+
+    }
+
+    case ActionTypes.VALIDATE__ERROR:{
+      return {
+        ...state,
+        validateToken: {
+          ...state.validateToken,
+          loading: false,
+          error: payload.error,
+          errors: payload.errors,
+        },
+      };
+
     }
   }
 

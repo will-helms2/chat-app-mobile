@@ -4,12 +4,12 @@
  */
 
 import Config from 'config';
-import { createStackNavigator } from 'react-navigation';
+import { createSwitchNavigator } from 'react-navigation';
 import { stackNavigationOptions, stackNavigatorProps } from 'navigation';
 import SignedOutNavigator from 'navigation/signed-out';
 import SignedInNavigator from 'navigation/signed-in';
 
-export default createStackNavigator(
+export default createSwitchNavigator(
   {
     'signed-out': {
       screen: SignedOutNavigator,
@@ -20,8 +20,5 @@ export default createStackNavigator(
       navigationOptions: stackNavigationOptions(),
     },
   },
-  {
-    ...stackNavigatorProps,
-    ...Config.navigation.app.navigationOptions,
-  },
+  Config.navigation.app.navigationOptions
 );

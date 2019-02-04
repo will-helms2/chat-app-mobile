@@ -71,7 +71,7 @@ export default class ServerRequest {
     };
 
     if (this._token) {
-      fetchParams.headers.Authorization = `Token token=${this._token.trim()}`;
+      fetchParams.headers.Authorization = `Bearer ${this._token.trim()}`;
     }
 
     if (this._formData) {
@@ -87,7 +87,7 @@ export default class ServerRequest {
     console.log(this._response);
 
     //debug purposes
-    //console.log(this._fetchURL, this._body, this._parsedResponse);
+    console.log(this._fetchURL, fetchParams, this._response, this._parsedResponse);
 
     return this._parsedResponse;
   }
@@ -103,6 +103,10 @@ export default class ServerRequest {
 
       switch (response.status) {
         case 200: {
+          this._success = true;
+          break;
+        }
+        case 201: {
           this._success = true;
           break;
         }

@@ -17,7 +17,7 @@ class SignIn extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if(nextProps.session.loaded && nextProps.session.token){
-      this.props.navigation.navigate('home');
+      this.props.navigation.navigate('teams__teams_list');
     }
   }
 

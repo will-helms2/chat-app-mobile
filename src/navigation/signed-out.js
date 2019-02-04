@@ -27,7 +27,11 @@ export default createStackNavigator(
     },
     'signed-out__sign-up': {
       screen: SignUp,
-      navigationOptions: stackNavigationOptions(),
+      navigationOptions: stackNavigationOptions({
+        headerStyle: {
+          borderBottomWidth: 0,
+        },
+      }),
     },
   },
   {

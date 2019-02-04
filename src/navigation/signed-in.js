@@ -4,22 +4,19 @@
  */
 
 import Config from 'config';
-import { createStackNavigator } from 'react-navigation';
+import { createSwitchNavigator } from 'react-navigation';
 import { stackNavigationOptions, stackNavigatorProps } from 'navigation';
-import HomeNavigator from 'navigation/home';
+import DrawerNavigator from 'navigation/main-drawer';
+import TeamsNavigator from 'navigation/teams';
 
-export default createStackNavigator(
-  {
-    'signed-in__home': {
-      screen: HomeNavigator,
-      navigationOptions: stackNavigationOptions({
-        headerLeftEnabled: false,
-        header: null,
-      }),
+export default createSwitchNavigator({
+
+      'signed-in__teams': {
+        screen: TeamsNavigator,
+      },
+      'signed-in__drawer': {
+        screen: DrawerNavigator,
+      },
     },
-  },
-  {
-    ...stackNavigatorProps,
-    ...Config.navigation.signedIn.navigationOptions,
-  },
+  Config.navigation.signedIn.navigationOptions
 );

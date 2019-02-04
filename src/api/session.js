@@ -99,3 +99,38 @@ export async function signUp(params){
 
   return response;
 }
+
+export async function validate(){
+  const path = '/user/validate';
+  let response = null;
+  try {
+    const accessToken = await Storage.getItem(StorageKeys.ACCESS_TOKEN);
+
+    response = await new ServerRequest({
+      path,
+      accessToken,
+    }).get();
+  } catch (error) {
+    response = Errors.resolveError(error);
+  }
+
+  return response;
+
+}
+
+export async function signOut(){
+  //const path = '/sign-out';
+  //let response;
+  try {
+    // Remove Access Token
+    await Storage.removeItem(StorageKeys.ACCESS_TOKEN);
+
+    // response = await new ServerRequest({
+    //   path,
+    // }).delete();
+  } catch (error) {
+    //response = Errors.resolveError(error);
+  }
+
+  //return response;
+}
