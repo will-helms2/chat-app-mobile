@@ -21,7 +21,8 @@ export default class MainContentComponent extends React.Component {
   signOut = () => {
     console.log(this.props);
     const teamId = this.props.team.id;
-    this.props.navigation.navigate({routeName: 'home__team', params: {teamId, signOut: true}, key: "team-" + teamId});
+    this.props.actions.signOut();
+    this.props.navigation.navigate('signed-out__opening');
   }
 
   _renderUser = (user) => {

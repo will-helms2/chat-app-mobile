@@ -34,6 +34,8 @@ export const MainDrawerRoutes = {
 export const HomeRoutes = {
   HOME__TEAM: 'home__team',
   HOME__CHANNEL: 'home__channel',
+  HOME__PROFILE: 'home__profile',
+  HOME__UPLOAD_PHOTO: 'home__upload_photo',
 };
 
 export const ChannelRoutes = {
@@ -44,7 +46,12 @@ export const ChannelRoutes = {
 
 export const CreateTeamRoutes = {
   CREATE_TEAM_INVITE__HOME: 'create_team_invite__home',
-}
+};
+
+export const ProfileRoutes = {
+  PROFILE__HOME: 'profile__home',
+  PROFILE__UPLOAD_PHOTO: 'profile__upload_photo',
+};
 
 export default {
   ...AppRoutes,

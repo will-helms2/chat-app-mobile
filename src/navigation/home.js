@@ -11,6 +11,8 @@ import Team from 'screens/team';
 import Channel from 'navigation/channel';
 import CreateChannel from 'screens/create-channel';
 import { MainDrawerButton, ChannelDrawerButton } from 'components';
+import Profile from 'screens/profile';
+import UploadProfile from 'screens/upload-profile';
 
 /* eslint-disable react/prop-types */
 export default createStackNavigator(
@@ -34,6 +36,19 @@ export default createStackNavigator(
       navigationOptions: {
         title: 'Create a Station',
       },
+    },
+    'home__profile': {
+      screen: Profile,
+      navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.name}`,
+      }),
+    },
+
+    'home__upload_photo': {
+      screen: UploadProfile,
+      navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.name}`,
+      }),
     },
   },
     {

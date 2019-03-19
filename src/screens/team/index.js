@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { mapState, mapActions } from 'store/team';
 import Screen from 'screens';
@@ -31,8 +31,8 @@ class Team extends React.Component {
     this.props.navigation.navigate('home__channel', {channelId, name});
   };
 
-  openMemberProfile = (userId) => {
-    //this.props.navigation.navigate();
+  openMemberProfile = (userId, firstName, lastName) => {
+    this.props.navigation.navigate('home__profile', {userId, name: firstName});
   };
 
   _renderTeamName = () => {
@@ -47,10 +47,10 @@ class Team extends React.Component {
   _renderUser = ({item}) => {
     return(
       <TouchableOpacity
-          onPress={() => {this.openMemberProfile(item.id)}}
+          onPress={() => {this.openMemberProfile(item.id, item.firstName, item.lastName)}}
           style={style.userButton}
       >
-        {item.thumbUrl ? " " : <Icon name="person" size={40} color="black" style={style.userButtonText} />}
+        {item.photoUrl ? <Image style={style.userImage} source={{uri: item.photoUrl}}/> : <Icon name="person" size={60} color="black" style={style.userImage} />}
         <Text style={style.userButtonText}>{item.firstName + " " + item.lastName}</Text>
       </TouchableOpacity>
     );
@@ -85,7 +85,7 @@ class Team extends React.Component {
           onPress={() => {this.goToChannel(item.id, item.name)}}
           style={style.channelButton}
       >
-        {item.isPrivate ? <Icon /> : <Text style={style.channelButtonText}>{"#"}</Text>}
+        {item.isPrivate ? <Icon name="lock" style={style.channelButtonLock} /> : <Icon name="lock-open" style={style.channelButtonLock}/>}
         <Text style={style.channelButtonText}>{item.name}</Text>
       </TouchableOpacity>
     );
@@ -93,11 +93,10 @@ class Team extends React.Component {
 
   _renderFooter = () => {
     return(
-      <View style={style.createChannelContainer}>
-        <TouchableOpacity style={style.createChannelButton} onPress={() => {this.props.navigation.navigate("home__create_channel")}}>
-          <Icon name="add-circle" size={50} color="black" style={style.createChannelText} />
+        <TouchableOpacity style={style.channelButtonAdd} onPress={() => {this.props.navigation.navigate("home__create_channel")}}>
+          <Icon name="add-circle" size={50} color="black" style={style.channelButtonLock} />
+          <Text style={style.channelButtonText}>Add Station</Text>
         </TouchableOpacity>
-      </View>
     );
   };
 
@@ -105,10 +104,43 @@ class Team extends React.Component {
     return(
       <View style={style.channelsContainer}>
         <FlatList
-          data={this.props.team.channels}
+          data={this.props.team.channels.concat(this.props.team.publicChannels)}
           renderItem={this._renderChannel}
           keyExtractor={this._keyExtractor}
           ListFooterComponent={this._renderFooter}
+          contentInset= {{bottom: 60}}
+        />
+      </View>
+    );
+  }
+
+  _renderDMsHeader(){
+    return(
+      <View style={style.channelHeader}>
+          <Text style={style.channelHeaderText}>{"Direct Messages"}</Text>
+      </View>
+    );
+  }
+
+  _renderDM = ({item}) => {
+    console.log(item);
+    return(
+      <TouchableOpacity
+          onPress={() => {this.goToChannel(item.id, item.users[0].firstName + " " + item.users[0].lastName)}}
+          style={style.dmButton}
+      >
+        <Text style={style.dmButtonText}>{item.users[0].firstName} {item.users[0].lastName}</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  _renderDMs = () => {
+    return(
+      <View style={style.channelsContainer}>
+        <FlatList
+          data={this.props.team.directMessages}
+          renderItem={this._renderDM}
+          keyExtractor={this._keyExtractor}
           contentInset= {{bottom: 60}}
         />
       </View>
@@ -124,8 +156,14 @@ class Team extends React.Component {
       <View style={style.container}>
         {this._renderTeamName()}
         {this._renderUserList()}
-        {this._renderChannelHeader()}
-        {this._renderChannels()}
+        <View style={style.channelSection}>
+          {this._renderChannelHeader()}
+          {this._renderChannels()}
+        </View>
+        <View style={style.dmSection}>
+          {this._renderDMsHeader()}
+          {this._renderDMs()}
+        </View>
       </View>
     );
   }

@@ -27,4 +27,10 @@ export default StyleSheet.create({
   formContainer:{
     flex: 1,
   },
+  isPrivateContainer: {
+    flexDirection: "row",
+    paddingVertical: 10,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  }
 });

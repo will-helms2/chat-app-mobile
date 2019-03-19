@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, Image, Switch } from 'react-native';
 import style from './style';
 import { TextInput } from 'components';
 import { connect } from 'react-redux';
@@ -12,7 +12,7 @@ class CreateChannel extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {name: "", description: "", isDm: false, isPrivate: false, teamId: this.props.team.id};
+    this.state = {name: "", description: "", isPrivate: false, isDm: false, teamId: this.props.team.id};
   }
 
   componentWillReceiveProps(nextProps){
@@ -38,6 +38,9 @@ class CreateChannel extends React.Component {
         <View style={style.formContainer}>
             <TextInput autoCapitalize="none" placeholder={"Station Name"} onChangeText={(value) => this.setState({name: value})} />
             <TextInput autoCapitalize="none" placeholder={"Station Description"} onChangeText={(value) => this.setState({description: value})} />
+            <View style={style.isPrivateContainer}>
+              <Text style={{fontSize: 16}}>{"Private"}</Text><Switch value={this.state.isPrivate} onValueChange={(value) => this.setState({'isPrivate': value})} />
+            </View>
           {loading ?
             <View style={style.buttonContainer}>
               <ActivityIndicator />

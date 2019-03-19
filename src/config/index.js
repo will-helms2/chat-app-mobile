@@ -7,7 +7,7 @@ import { NavigationRoutes } from 'navigation';
 import Secrets from './secrets.local';
 
 const Config = {
-  baseUrl: 'https://www.vimbel.com',
+  baseUrl: 'https://vimbel-test.herokuapp.com',
   apiPath: '/api',
   defaultEmail: '',
   defaultPassword: '',
@@ -17,9 +17,9 @@ const Config = {
     clearSession: false,
   },
   pusher: {
-    appId:"706116",
-    key:"238d6cca51f7afd1becf",
-    secret:"cf2883fd8362989922cc",
+    appId:"707133",
+    key:"c656fbc086db6214bfcd",
+    secret:"e8a58f301c2585341bee",
     cluster:"mt1",
     encrypted:true,
     authEndpoint:"http://127.0.0.1:8000/broadcasting/auth"
@@ -61,7 +61,7 @@ const Config = {
      navigationOptions: {
        initialRouteName: NavigationRoutes.CREATE_TEAM_INVITE__HOME,
      },
-   }
+   },
  },
 };
 

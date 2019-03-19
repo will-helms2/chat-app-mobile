@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
   },
   teamHeader: {
     justifyContent: 'center',
@@ -10,7 +11,7 @@ export default StyleSheet.create({
   },
   teamHeaderText: {
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 18,
   },
   userListContainer: {
     borderBottomWidth: 1,
@@ -20,9 +21,16 @@ export default StyleSheet.create({
     justifyContent: "center",
     paddingLeft: 10,
     paddingBottom: 10,
+    alignItems: "center",
+  },
+  userImage: {
+    height: 60,
+    width: 60,
+    borderRadius: 30,
   },
   userButtonText: {
     textAlign: "center",
+    paddingTop: 5,
   },
   channelHeader: {
     justifyContent: 'center',
@@ -30,24 +38,56 @@ export default StyleSheet.create({
   },
   channelHeaderText: {
     textAlign: "center",
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: "bold",
   },
   channelsContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
   },
   channelButton:{
     backgroundColor: "#8A2BE2",
-    paddingVertical: 10,
+    paddingVertical: 10 ,
     marginTop: 10,
-    borderRadius: 5,
     flexDirection: "row",
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
+  },
+  dmButton:{
+    backgroundColor: "#0099cc",
+    paddingVertical: 10 ,
+    marginTop: 10,
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "flex-start",
+  },
+  channelButtonAdd:{
+    backgroundColor: "#0099cc",
+    paddingVertical: 10 ,
+    marginTop: 10,
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "flex-start",
   },
   channelButtonText: {
     color: "white",
     textAlign: 'center',
     paddingRight: 10,
+    fontSize: 16,
+    paddingLeft: 5,
+  },
+  dmButtonText: {
+    color: "white",
+    textAlign: 'center',
+    paddingRight: 10,
+    fontSize: 16,
+    paddingLeft: 20,
+  },
+  channelButtonLock:{
+    color: "white",
+    textAlign: 'center',
+    paddingRight: 10,
+    fontSize: 16,
+    paddingLeft: 20,
   },
   createChannelContainer:{
     justifyContent: "center",
@@ -77,4 +117,11 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 50,
   },
+  channelSection: {
+    flex: 1,
+  },
+  dmSection: {
+    flex: 1,
+    paddingTop: 50,
+  }
 });

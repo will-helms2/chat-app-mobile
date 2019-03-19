@@ -5,6 +5,7 @@ import { TextInput } from 'components';
 import { connect } from 'react-redux';
 import { mapState, mapActions } from 'store/session';
 import Screen from 'screens';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 @connect(mapState, mapActions)
 class SignUp extends React.Component {
@@ -33,7 +34,7 @@ class SignUp extends React.Component {
     const { loading, error, errors = null } = this.props.session;
 
     return(
-      <View style={style.container}>
+      <KeyboardAwareScrollView style={style.container}>
         <View style={style.logoContainer}>
           <Image
             source={require('assets/logo/vimbelTitle.png')}
@@ -52,12 +53,12 @@ class SignUp extends React.Component {
               <ActivityIndicator />
             </View> :
             <TouchableOpacity onPress={this.onSubmit} style={style.buttonContainer}>
-              <Text style={style.button}>{"Sign In"}</Text>
+              <Text style={style.button}>{"Sign Up"}</Text>
             </TouchableOpacity>
           }
           {this.props._renderError(error, loading, errors)}
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
